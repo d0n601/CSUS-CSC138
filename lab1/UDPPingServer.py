@@ -24,8 +24,7 @@ while True:
     message = message.upper()
 
     # If rand is less is than 4, we consider the packet lost and do not
-    respond
-        if rand < 4:
-            continue
+    if rand < 4:
+        continue
         # Otherwise, the server responds
-        serverSocket.sendto(message, address)
+    serverSocket.sendto(message, address)
