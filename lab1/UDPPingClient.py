@@ -18,6 +18,6 @@ for pings in range(10):
     try:
         data, server = clientSocket.recvfrom(1024)
         elapsed = time.time() - start
-        print 'REPLIED : PING %s RTT = %.3f s' % (pings + 1 , elapsed)
+        print '\tREPLIED : PING %s RTT = %.3f s' % (pings + 1 , elapsed)
     except timeout:
-        print 'Request timed out'
+        print '\tRequest timed out'
