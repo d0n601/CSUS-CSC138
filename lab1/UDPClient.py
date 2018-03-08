@@ -1,18 +1,21 @@
-import time
+# Ryan Kozak
+# PLab 1a - UDP Client
+# UDPClient code from lecture slides
+
+
 from socket import *
 
-for pings in range(10):
-    clientSocket = socket(AF_INET, SOCK_DGRAM)
-    clientSocket.settimeout(1)
-    message = 'ryan kozak lab1.'
-    addr = ("sp1.ecs.csus.edu", 32023)
+serverName = 'sp1.ecs.csus.edu'
+serverPort = 32023
 
-    start = time.time()
-    clientSocket.sendto(message, addr)
-    try:
-        data, server = clientSocket.recvfrom(1024)
-        end = time.time()
-        elapsed = end - start
-        print '%s %d %d' % (data, pings, elapsed)
-    except timeout:
-        print 'REQUEST TIMED OUT'
+clientSocket = socket(AF_INET, SOCK_DGRAM)
+
+message = raw_input('Input lowercase sentence:')
+
+clientSocket.sendto (message.encode(),(serverName, serverPort))
+
+modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
+
+print modifiedMessage.decode()
+
+clientSocket.close()

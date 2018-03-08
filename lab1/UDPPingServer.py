@@ -1,4 +1,7 @@
-#UDPPingerServer.py
+# Ryan Kozak
+# PLab 1c - UDP Pinger
+
+# UDPPingerServer.py
 # We will need the following module to generate randomized lost packets
 
 import random
