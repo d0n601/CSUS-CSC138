@@ -1,18 +1,23 @@
 import time
 from socket import *
 
+
+serverAddress = 'sp1.ecs.csus.edu'
+serverPort = 32023
+
+print 'Pinging %s:%d' % (serverAddress, serverPort)
+
 for pings in range(10):
     clientSocket = socket(AF_INET, SOCK_DGRAM)
     clientSocket.settimeout(1)
     message = 'ryan kozak lab1.'
-    addr = ("sp1.ecs.csus.edu", 32023)
+    addr = (serverAddress, serverPort)
 
     start = time.time()
     clientSocket.sendto(message, addr)
     try:
         data, server = clientSocket.recvfrom(1024)
-        end = time.time()
-        elapsed = end - start
-        print '%s %d %d' % (data, pings, elapsed)
+        elapsed = time.time() - start
+        print 'REPLIED : PING %s RTT = %.3f s' % (pings + 1 , elapsed)
     except timeout:
-        print 'REQUEST TIMED OUT'
+        print 'Request timed out'
