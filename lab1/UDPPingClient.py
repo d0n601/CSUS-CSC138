@@ -5,7 +5,7 @@ from socket import *
 serverAddress = 'sp1.ecs.csus.edu'
 serverPort = 32023
 
-print 'Pinging %s:%d' % (serverAddress, serverPort)
+print '\nPinging %s:%d' % (serverAddress, serverPort)
 
 for pings in range(10):
     clientSocket = socket(AF_INET, SOCK_DGRAM)
