@@ -1,6 +1,11 @@
+# Ryan Kozak
+# PLab 1a - UDP 
+# UDPServer code directly from lecture slides
+
 from socket import *
 
 serverPort = 32023
+
 serverSocket = socket(AF_INET, SOCK_DGRAM)
 serverSocket.bind(('sp1.ecs.csus.edu', 32023))
 
