@@ -1,3 +1,7 @@
+# Ryan Kozak
+# PLab 1a - UDP/TCP
+# TCPServer code directly from lecture slides
+
 from socket import *
 
 serverPort = 32023
