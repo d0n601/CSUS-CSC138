@@ -7,7 +7,8 @@ import sys # In order to terminate the program
 serverSocket = socket(AF_INET, SOCK_STREAM)
 
 #Prepare a sever socket
-serverSocket.bind(('athena.ecs.csus.edu', 32023))
+
+serverSocket.bind(('sp1.ecs.csus.edu',8083 ))
 serverSocket.listen(1)
 
 while True:
@@ -20,7 +21,7 @@ while True:
     try:
         message = connectionSocket.recv(1024)#.decode()
         filename = message.split()[1]
-        f = open(filename[1:])
+        f = open('./'+filename[1:])
         outputdata = f.read()
       
         #Send one HTTP header line into socket  
