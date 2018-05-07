@@ -5,8 +5,15 @@ import ssl
 import base64
 from socket import *
 
-msg = "\r\n I love computer networks!"
-endmsg = "\r\n.\r\n"
+contentType = "Content-Type: text/html\r\n"  # HTML content type to make email look awesome.
+subject = "Subject: CSC138 SMTP Client\r\n"  # All emails should have a subject
+
+# HTML email body
+msg = """\r\n <h1>I love computer networks!</h1> 
+              <img src="https://images-na.ssl-images-amazon.com/images/I/51yDvXnF%2BDL._SX383_BO1,204,203,200_.jpg">
+"""
+
+endmsg = "\r\n.\r\n"                         # end of the SMTP data.
 
 # Create socket called clientSocket and establish a TCP connection with mailserver
 mailserver = "smtp.gmail.com" # Gmail
@@ -61,7 +68,7 @@ if recv_user[:3] != '334':
     print ('334 reply not received from server')
 
 # Send password and print server response.
-password = base64.b64encode(b'PASSWORDGOESHERE')
+password = base64.b64encode(b'PASSWORD')
 password = password.decode()+'\r\n'
 clientSocket.write(password.encode())
 recv_pword = clientSocket.read(1024).decode()
@@ -93,6 +100,10 @@ print(recv_data)
 if recv_data[:3] != '354':
     print('354 reply not recieved from server.')
 
+# send content type
+clientSocket.send(contentType.encode())
+#send subject
+clientSocket.send(subject.encode())
 #Send message data.
 clientSocket.send(msg.encode())
 # End message period.
