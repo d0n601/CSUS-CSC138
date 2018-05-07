@@ -70,7 +70,7 @@ if recv_pword[:3] != '235':
     print ('235 reply not received from server')
 
 # Send MAIL FROM command and print server response.
-mailFrom = 'MAIL FROM:<robot@mapmoto.com>\r\n'
+mailFrom = 'MAIL FROM:<csc138man@gmail.com>\r\n'
 clientSocket.send(mailFrom.encode())
 recv_from = clientSocket.recv(1024).decode()
 print(recv_from)
