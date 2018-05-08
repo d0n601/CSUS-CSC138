@@ -46,13 +46,13 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
         recPacket, addr = mySocket.recvfrom(1024)
 
         #Fill in start
-        #Fetch the ICMP header from the IP packet
         header = recPacket[20:28]
         ptype, code, checksum, pid, seqNum = struct.unpack("bbHHh",header)
         if pid == ID:
             timeSize = struct.calcsize("d")
             timeSent = struct.unpack("d",recPacket[28:(28 + timeSize)])[0]
-            return('Type: %d Code: %d Checksum: %0x ID: %d SeqNum: %d Time: %d ms')%( ptype, code, checksum, pid, seqNum, (timeReceived - timeSent)*1000)
+            return('Type: %d Code: %d Checksum: %0x ID: %d SeqNum: %d Time: %d ms')%\
+                  ( ptype, code, checksum, pid, seqNum, (timeReceived - timeSent)*1000)
         #Fill in end
         timeLeft = timeLeft - howLongInSelect
         if timeLeft <= 0:
@@ -98,10 +98,28 @@ def ping(host, timeout=1):
     print("Pinging " + dest + " using Python:")
     print("")
     # Send ping requests to a server separated by approximately one second
-    while 1 :
+
+    for x in range(0, 30): # I modified this from the infinite while loop
         delay = doOnePing(dest, timeout)
         print(delay)
     time.sleep(1)# one second
     return delay
 
-ping("google.com")
+
+def main():
+    print('Ryan Kozak CSC138 pLab2b')
+    print('\tPing North America @ Stanford')
+    ping("cs.stanford.edu")
+    print('\tPing Europe @ Cambrige')
+    ping("www.cst.cam.ac.uk")
+    print('\tPing Austrailia @ University of Sydney')
+    ping("www.sydney.edu.au")
+    print('\tPing South America @ University of Lima')
+    ping("www.ulima.edu.pe")
+    print('end of lab2b...')
+
+
+if __name__ == "__main__":
+    main()
+
+
